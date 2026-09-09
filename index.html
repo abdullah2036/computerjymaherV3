@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#05060a">
+  <title>كمبيوترجي ماهر | Maher Tech — Night City</title>
+  <meta name="description"
+    content="كمبيوترجي ماهر · استوديو واجهات وتطوير متكامل وأمن سيبراني — تجربة بصرية سينمائية. Computerjy Maher — frontend, full-stack & security studio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;900&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ============ BOOT ============ -->
+  <div id="boot">
+    <div class="boot-mark">م</div>
+    <div class="line" data-i18n="boot1">// جاري تشغيل النظام</div>
+    <div class="line" data-i18n="boot2">MAHER-TECH v3.077 :: تهيئة الواجهة</div>
+    <div class="bar-wrap">
+      <div class="bar"></div>
+    </div>
+    <div class="boot-pct">0%</div>
+  </div>
+
+  <!-- ============ AMBIENT LAYERS ============ -->
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="street" aria-hidden="true">
+    <div class="street-floor"></div>
+  </div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="beam" aria-hidden="true"></div>
+  <div class="noise-vignette" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ============ CUSTOM CURSOR ============ -->
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- ============ SCROLL PROGRESS RAIL ============ -->
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-fill" id="railFill"></span>
+    <ul class="rail-labels">
+      <li data-section="hero" class="active">00</li>
+      <li data-section="services">01</li>
+      <li data-section="how">02</li>
+      <li data-section="products">03</li>
+      <li data-section="projects">04</li>
+      <li data-section="reviews">05</li>
+    </ul>
+  </aside>
+
+  <!-- ============ STATUS BAR ============ -->
+  <div class="statusbar">
+    <span><span class="dot"></span><span data-i18n="status_online">النظام متصل</span></span>
+    <span class="mid" data-i18n="status_mid">جدة، السعودية · استوديو واجهات وتطوير وأمن سيبراني</span>
+    <span class="right-stat">
+      <span data-i18n="status_hours">السبت–الخميس 10ص–10م</span>
+      <span id="clock">00:00:00</span>
+    </span>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="mainNav">
+    <a class="logo" href="#top" data-scroll>
+      <div class="logo-mark"><span>م</span></div>
+      <div class="logo-text">
+        <span data-i18n="brand">كمبيوترجي ماهر</span>
+        <small data-i18n="brand_sub">FRONTEND · FULL-STACK · SECURITY</small>
+      </div>
+    </a>
+    <nav class="links">
+      <a href="#services" data-scroll data-i18n="nav_services">الخدمات</a>
+      <a href="#how" data-scroll data-i18n="nav_how">آلية العمل</a>
+      <a href="#products" data-scroll data-i18n="nav_products">العتاد</a>
+      <a href="#projects" data-scroll data-i18n="nav_projects">المشاريع</a>
+      <a href="#reviews" data-scroll data-i18n="nav_reviews">آراء العملاء</a>
+      <a href="#contact" data-scroll data-i18n="nav_contact">تواصل معنا</a>
+    </nav>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langBtn" data-magnetic>EN</button>
+      <button class="btn-cta" data-i18n="nav_book" data-magnetic onclick="bookGeneral()">احجز الآن</button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="hero-left">
+      <div class="eyebrow reveal" data-i18n="hero_eyebrow">// حلول تقنية موثوقة منذ 2016</div>
+      <h1 class="hero-h1">
+        <span class="line-mask"><span class="line-in" data-i18n="hero_h1_line1">نُصلح أجهزتك،</span></span>
+        <span class="line-mask"><span class="line-in"><span class="glitch-word" data-text="ونُجهّز"
+              data-i18n="hero_h1_line2">ونُجهّز</span> <span class="accent" data-i18n="hero_h1_line3">مستقبلك.</span></span></span>
+      </h1>
+      <p class="sub reveal" data-i18n="hero_sub">من إصلاح الطابعات ومشاكل الواي فاي إلى تجهيز مكتبك بأحدث الكابلات والمحولات —
+        فريق ماهر يصل إليك أينما كنت.</p>
+      <div class="hero-ctas reveal">
+        <button class="btn-cta" data-i18n="hero_cta1" data-magnetic
+          onclick="goto('#services')">احجز جلسة الآن</button>
+        <button class="btn-outline" data-i18n="hero_cta2" data-magnetic
+          onclick="goto('#products')">تصفح العتاد</button>
+      </div>
+      <div class="scrollcue reveal" aria-hidden="true"><span data-i18n="scrollcue">مرّر للأسفل</span><i></i></div>
+    </div>
+
+    <div class="hero-right" data-parallax="0.06">
+      <div class="hud-panel" data-tilt>
+        <div class="hud-scan"></div>
+        <div class="hud-content">
+          <div class="top-row">
+            <span data-i18n="hud_monitor">مراقبة النظام</span>
+            <span>ID: 0092</span>
+          </div>
+          <div>
+            <div class="hud-id" data-count="98" data-suffix="%">0%</div>
+            <div class="hud-mini" data-i18n="hud_desc">نسبة رضا العملاء<br>خلال آخر 200 مشروع ومهمة</div>
+            <div class="hud-bars">
+              <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+              <span class="on"></span><span class="on"></span><span class="on"></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services">
+    <div class="sec-head reveal">
+      <div class="tag" data-i18n="services_tag">// الخدمات</div>
+      <h2 class="split" data-i18n="services_h2">احجز جلسة دعم فني في دقائق</h2>
+      <p data-i18n="services_p">اختر نوع الخدمة، حدد الموعد المناسب، وسيصلك فنيّ مختص — أو انضم لجلسة عن بُعد فورية.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal" data-tilt style="--accent:var(--cyan)">
+        <div class="s-index">SRV / 01</div>
+        <div class="s-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+        </div>
+        <h3 data-i18n="s1_title">جلسة استشارة تقنية</h3>
+        <p data-i18n="s1_desc">مكالمة فيديو مع مختص لتشخيص المشكلة، مراجعة الكود أو البنية، واختيار المسار التقني المناسب
+          لمشروعك.</p>
+        <div class="service-row">
+          <div class="service-price">100 ﷼ <small data-i18n="per_session">/ الجلسة (45 دقيقة)</small></div>
+          <button class="book-btn" data-i18n="book_now" data-magnetic onclick="bookService('s1')">احجز الآن</button>
+        </div>
+      </div>
+
+      <div class="service-card reveal" data-tilt style="--accent:var(--pink)">
+        <div class="s-index">SRV / 02</div>
+        <div class="s-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
+          </svg>
+        </div>
+        <h3 data-i18n="s2_title">بناء واجهات أمامية</h3>
+        <p data-i18n="s2_desc">واجهات إنتاجية سريعة ومتجاوبة بحركات نظيفة — من التصميم إلى كود يعمل، جاهز للنشر ومهيّأ
+          للأداء.</p>
+        <div class="service-row">
+          <div class="service-price">150 ﷼ <small data-i18n="per_project">/ المشروع</small></div>
+          <button class="book-btn" data-i18n="book_now" data-magnetic onclick="bookService('s2')">احجز الآن</button>
+        </div>
+      </div>
+
+      <div class="service-card reveal" data-tilt style="--accent:var(--violet)">
+        <div class="s-index">SRV / 03</div>
+        <div class="s-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <ellipse cx="12" cy="5" rx="9" ry="3" />
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+            <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+          </svg>
+        </div>
+        <h3 data-i18n="s3_title">تطوير متكامل</h3>
+        <p data-i18n="s3_desc">من الواجهة إلى الخادم: واجهات برمجية، قواعد بيانات، مصادقة، ونشر — نظام كامل يُسلَّم ويعمل.
+        </p>
+        <div class="service-row">
+          <div class="service-price">300 ﷼ <small data-i18n="per_project">/ المشروع</small></div>
+          <button class="book-btn" data-i18n="book_now" data-magnetic onclick="bookService('s3')">احجز الآن</button>
+        </div>
+      </div>
+
+      <div class="service-card reveal" data-tilt style="--accent:var(--lime)">
+        <div class="s-index">SRV / 04</div>
+        <div class="s-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+        </div>
+        <h3 data-i18n="s4_title">تأمين واختبار الأمن السيبراني</h3>
+        <p data-i18n="s4_desc">فحص بأسلوب اختبار الاختراق، مراجعة الصلاحيات والثغرات الشائعة، وتقرير تقوية عملي لموقعك أو
+          نظامك.</p>
+        <div class="service-row">
+          <div class="service-price">100 ﷼ <small data-i18n="per_scan">/ الفحص</small></div>
+          <button class="book-btn" data-i18n="book_now" data-magnetic onclick="bookService('s4')">احجز الآن</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="how">
+    <div class="sec-head reveal">
+      <div class="tag" data-i18n="how_tag">// آلية العمل</div>
+      <h2 class="split" data-i18n="how_h2">أربع خطوات، ومشروعك يُسلَّم</h2>
+    </div>
+    <div class="steps" id="steps">
+      <div class="steps-line"><span class="steps-line-fill" id="stepsFill"></span></div>
+      <div class="step" data-step="1">
+        <div class="num">01</div>
+        <h4 data-i18n="how1_h">حدّد النطاق</h4>
+        <p data-i18n="how1_p">نتفق على ما يجب إنجازه بالضبط: الميزات، الصفحات، والنتيجة المتوقعة.</p>
+      </div>
+      <div class="step" data-step="2">
+        <div class="num">02</div>
+        <h4 data-i18n="how2_h">نتفق على الخطة</h4>
+        <p data-i18n="how2_p">جدول زمني واضح، مراحل تسليم، وتكلفة ثابتة قبل أن نبدأ.</p>
+      </div>
+      <div class="step" data-step="3">
+        <div class="num">03</div>
+        <h4 data-i18n="how3_h">نبدأ التنفيذ</h4>
+        <p data-i18n="how3_p">بناء تدريجي مع معاينات حيّة — ترى التقدّم أولاً بأول لا في النهاية فقط.</p>
+      </div>
+      <div class="step" data-step="4">
+        <div class="num">04</div>
+        <h4 data-i18n="how4_h">التسليم والمتابعة</h4>
+        <p data-i18n="how4_p">نشر نهائي، كود مُوثّق، وفترة متابعة لأي تعديل أو سؤال.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTS / BENCH ============ -->
+  <section id="products">
+    <div class="sec-head reveal">
+      <div class="tag" data-i18n="products_tag">// العتاد</div>
+      <h2 class="split" data-i18n="products_h2">العتاد الذي أعتمد عليه</h2>
+      <p data-i18n="products_p">قطع مُجرَّبة على طاولة العمل — كابلات ومحولات أصلية أرشّحها وأوفّرها مع ضمان.</p>
+    </div>
+
+    <div class="products-grid">
+
+      <div class="product-card reveal" data-tilt>
+        <div class="product-thumb">🔌<span class="tagnew" data-i18n="p_new">جديد</span></div>
+        <div class="product-body">
+          <h4 data-i18n="p1_title">كابل HDMI 4K</h4>
+          <div class="desc" data-i18n="p1_desc">طول 2 متر، دعم 4K@60Hz، مضفر ومقاوم للتلف.</div>
+          <div class="product-foot"><span class="price">45 ﷼</span><button class="cart-btn" data-magnetic
+              onclick="buyProduct('p1')">＋</button></div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-tilt>
+        <div class="product-thumb">🔗</div>
+        <div class="product-body">
+          <h4 data-i18n="p2_title">محول USB-C إلى HDMI</h4>
+          <div class="desc" data-i18n="p2_desc">وصل جهازك بأي شاشة أو بروجكتر بدقة 4K.</div>
+          <div class="product-foot"><span class="price">60 ﷼</span><button class="cart-btn" data-magnetic
+              onclick="buyProduct('p2')">＋</button></div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-tilt>
+        <div class="product-thumb">📱<span class="tagnew" data-i18n="p_hot">الأكثر طلباً</span></div>
+        <div class="product-body">
+          <h4 data-i18n="p3_title">كابل USB-C إلى Lightning</h4>
+          <div class="desc" data-i18n="p3_desc">شحن سريع ونقل بيانات لأجهزة آيفون وآيباد.</div>
+          <div class="product-foot"><span class="price">55 ﷼</span><button class="cart-btn" data-magnetic
+              onclick="buyProduct('p3')">＋</button></div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-tilt>
+        <div class="product-thumb">🧩</div>
+        <div class="product-body">
+          <h4 data-i18n="p4_title">هَب USB-C متعدد المنافذ</h4>
+          <div class="desc" data-i18n="p4_desc">7 في 1: HDMI، USB 3.0، قارئ بطاقات، وشحن.</div>
+          <div class="product-foot"><span class="price">130 ﷼</span><button class="cart-btn" data-magnetic
+              onclick="buyProduct('p4')">＋</button></div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-tilt>
+        <div class="product-thumb">🖱️</div>
+        <div class="product-body">
+          <h4 data-i18n="p5_title">ماوس لاسلكي</h4>
+          <div class="desc" data-i18n="p5_desc">اتصال ثنائي، بطارية تدوم شهرين، تصميم صامت.</div>
+          <div class="product-foot"><span class="price">70 ﷼</span><button class="cart-btn" data-magnetic
+              onclick="buyProduct('p5')">＋</button></div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-tilt>
+        <div class="product-thumb">⌨️</div>
+        <div class="product-body">
+          <h4 data-i18n="p6_title">لوحة مفاتيح ميكانيكية</h4>
+          <div class="desc" data-i18n="p6_desc">إضاءة RGB، مفاتيح باللمس الأزرق، لوحة تقنية.</div>
+          <div class="product-foot"><span class="price">220 ﷼</span><button class="cart-btn" data-magnetic
+              onclick="buyProduct('p6')">＋</button></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats-section">
+    <div class="stats-wrap reveal">
+      <div class="stat">
+        <div class="num" data-count="240" data-suffix="+">0</div>
+        <div class="lbl" data-i18n="stat1">مشروع ومهمة مُنجزة</div>
+      </div>
+      <div class="stat">
+        <div class="num" data-count="4.9" data-decimals="1">0</div>
+        <div class="lbl" data-i18n="stat2">تقييم متوسط من العملاء</div>
+      </div>
+      <div class="stat">
+        <div class="num" data-count="35" data-suffix="د">0</div>
+        <div class="lbl" data-i18n="stat3">متوسط زمن أول رد</div>
+      </div>
+      <div class="stat">
+        <div class="num" data-count="9" data-suffix="+">0</div>
+        <div class="lbl" data-i18n="stat4">سنوات خبرة</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATEMENT BAND ============ -->
+  <div class="band" aria-hidden="true">
+    <div class="band-track" data-i18n="band_text">نبني تجارب لا صفحات · نبني تجارب لا صفحات ·&nbsp;</div>
+  </div>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects">
+    <div class="sec-head reveal">
+      <div class="tag" data-i18n="projects_tag">// المشاريع</div>
+      <h2 class="split" data-i18n="projects_h2">مشاريع وأنظمة رقمية نفّذناها</h2>
+      <p data-i18n="projects_p">نماذج حقيقية لمشاريع ومواقع رقمية وأنظمة تفاعلية تم تطويرها وتدشينها على الويب.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Real Project 1: Eloria -->
+      <div class="project-card reveal" data-category="web" data-tilt style="--accent:var(--pink)">
+        <div class="browser-bar">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">abdullah2036.github.io/eloriaproject</div>
+          <div class="browser-status"><span class="pulse-dot"></span>LIVE</div>
+        </div>
+        <div class="project-thumb-wrap">
+          <a href="https://abdullah2036.github.io/eloriaproject" target="_blank" rel="noopener">
+            <img src="assets/projects/eloria.png" alt="مشروع إيلوريا — حكايات تُكتب لتبقى" class="project-img"
+              data-parallax="0.08">
+          </a>
+          <div class="project-overlay">
+            <button class="btn-preview" data-magnetic onclick="openProjectModal('proj1')"
+              data-i18n="proj_preview_btn">معاينة سريعة</button>
+            <a href="https://abdullah2036.github.io/eloriaproject" target="_blank" rel="noopener" class="btn-visit"
+              data-i18n="proj_visit_btn">زيارة الموقع ↗</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="proj-meta">
+            <span class="proj-badge" data-i18n="p1_cat">مكتبة رقمية</span>
+            <span class="proj-id">PRJ / 01</span>
+          </div>
+          <h3><a href="https://abdullah2036.github.io/eloriaproject" target="_blank" rel="noopener"
+              data-i18n="p1_proj_title">مشروع إيلوريا — حكايات تُكتب لتبقى</a></h3>
+          <p data-i18n="p1_proj_desc">منصة رقمية ومكتبة تفاعلية لعرض القصص والروايات والاقتباسات الأدبية بتصميم بصري
+            وظيفي ودعم لوضع الكاتبة.</p>
+          <div class="tech-stack">
+            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>SPA Engine</span>
+          </div>
+          <div class="project-foot">
+            <button class="proj-action-btn" onclick="openProjectModal('proj1')">
+              <span data-i18n="proj_details_btn">التفاصيل والمعاينة</span> 👁️
+            </button>
+            <a href="https://abdullah2036.github.io/eloriaproject" target="_blank" rel="noopener" class="proj-link-btn"
+              title="Visit website">↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Project 2: Maheren -->
+      <div class="project-card reveal" data-category="sys" data-tilt style="--accent:var(--cyan)">
+        <div class="browser-bar">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">abdullah2036.github.io/maheren</div>
+          <div class="browser-status"><span class="pulse-dot"></span>LIVE</div>
+        </div>
+        <div class="project-thumb-wrap">
+          <a href="https://abdullah2036.github.io/maheren" target="_blank" rel="noopener">
+            <img src="assets/projects/maheren.png" alt="بوابة مؤسسة الماهرين" class="project-img" data-parallax="0.08">
+          </a>
+          <div class="project-overlay">
+            <button class="btn-preview" data-magnetic onclick="openProjectModal('proj2')"
+              data-i18n="proj_preview_btn">معاينة سريعة</button>
+            <a href="https://abdullah2036.github.io/maheren" target="_blank" rel="noopener" class="btn-visit"
+              data-i18n="proj_visit_btn">زيارة الموقع ↗</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="proj-meta">
+            <span class="proj-badge" data-i18n="p2_cat">بوابة إلكترونية</span>
+            <span class="proj-id">PRJ / 02</span>
+          </div>
+          <h3><a href="https://abdullah2036.github.io/maheren" target="_blank" rel="noopener"
+              data-i18n="p2_proj_title">بوابة مؤسسة الماهرين</a></h3>
+          <p data-i18n="p2_proj_desc">بوابة تفاعلية بصرياً تجمع المشاريع العائلية والمنصات التقنية الصغيرة في واجهة دخول
+            مبتكرة ومؤثرات خاصة.</p>
+          <div class="tech-stack">
+            <span>HTML5</span><span>Cyber CSS</span><span>JS FX</span><span>Interactive UI</span>
+          </div>
+          <div class="project-foot">
+            <button class="proj-action-btn" onclick="openProjectModal('proj2')">
+              <span data-i18n="proj_details_btn">التفاصيل والمعاينة</span> 👁️
+            </button>
+            <a href="https://abdullah2036.github.io/maheren" target="_blank" rel="noopener" class="proj-link-btn"
+              title="Visit website">↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ REVIEWS ============ -->
+  <section id="reviews">
+    <div class="sec-head reveal">
+      <div class="tag" data-i18n="reviews_tag">// آراء العملاء</div>
+      <h2 class="split" data-i18n="reviews_h2">موثوق من عملاء حقيقيين</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal" data-tilt>
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p data-i18n="t1_p">سلّم الواجهة خلال أيام، كود نظيف ومنظّم وشرح واضح لكل قرار تقني.</p>
+        <div class="testi-user">
+          <div class="testi-avatar"></div>
+          <div>
+            <div class="name" data-i18n="t1_name">سارة العتيبي</div>
+            <div class="role" data-i18n="t1_role">صاحبة عمل صغير</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" data-tilt>
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p data-i18n="t2_p">بنى لنا نظاماً متكاملاً للحجوزات، ثابت وسريع ويشتغل بدون مشاكل من أول يوم.</p>
+        <div class="testi-user">
+          <div class="testi-avatar"></div>
+          <div>
+            <div class="name" data-i18n="t2_name">فهد القحطاني</div>
+            <div class="role" data-i18n="t2_role">مدير مكتب</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" data-tilt>
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p data-i18n="t3_p">راجع أمان الموقع وطلّع لنا تقرير واضح بالثغرات وكيف نسدّها، شغل محترف.</p>
+        <div class="testi-user">
+          <div class="testi-avatar"></div>
+          <div>
+            <div class="name" data-i18n="t3_name">نورة الحربي</div>
+            <div class="role" data-i18n="t3_role">مصممة جرافيك</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" data-tilt>
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p data-i18n="t4_p">استعنت بكمبيوترجي ماهر للعمل على موقعين في وقت قياسي وأتم ذلك بنجاح!</p>
+        <div class="testi-user">
+          <div class="testi-avatar"></div>
+          <div>
+            <div class="name" data-i18n="t4_name">رئيسة موقع ايلوريا</div>
+            <div class="role" data-i18n="t4_role">كاتبة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta-section">
+    <div class="cta-banner reveal">
+      <h2 data-i18n="cta_h2">جاهز تحل مشكلتك التقنية؟</h2>
+      <p data-i18n="cta_p">احجز جلستك الآن وخلّي فريق ماهر يتكفّل بالباقي.</p>
+      <button class="btn-cta" data-i18n="cta_btn" data-magnetic onclick="bookGeneral()">احجز جلستك الآن</button>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div>
+        <div class="logo">
+          <div class="logo-mark"><span>م</span></div>
+          <div class="logo-text"><span data-i18n="brand">كمبيوترجي ماهر</span></div>
+        </div>
+        <p class="footer-desc" data-i18n="footer_desc">استوديو واجهات وتطوير متكامل وأمن سيبراني — نصل إليك أينما كنت في
+          جدة والمنطقة الغربية.</p>
+        <div class="social-row">
+          <a href="#" aria-label="X">𝕏</a><a href="#" aria-label="LinkedIn">in</a><a href="#"
+            aria-label="GitHub">◎</a><a href="#" aria-label="Phone">✆</a>
+        </div>
+      </div>
+      <div>
+        <h5 data-i18n="footer_services">الخدمات</h5>
+        <ul>
+          <li><a href="#services" data-scroll data-i18n="s1_title">جلسة استشارة تقنية</a></li>
+          <li><a href="#services" data-scroll data-i18n="s2_title">بناء واجهات أمامية</a></li>
+          <li><a href="#services" data-scroll data-i18n="s3_title">تطوير متكامل</a></li>
+          <li><a href="#services" data-scroll data-i18n="s4_title">تأمين واختبار الأمن السيبراني</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 data-i18n="footer_company">الشركة</h5>
+        <ul>
+          <li><a href="#how" data-scroll data-i18n="nav_how">آلية العمل</a></li>
+          <li><a href="#products" data-scroll data-i18n="nav_products">العتاد</a></li>
+          <li><a href="#projects" data-scroll data-i18n="nav_projects">المشاريع</a></li>
+          <li><a href="#reviews" data-scroll data-i18n="nav_reviews">آراء العملاء</a></li>
+          <li><a href="#" data-i18n="footer_careers">الوظائف</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 data-i18n="footer_contact">تواصل معنا</h5>
+        <ul>
+          <li><a href="https://wa.me/966555972970" target="_blank" rel="noopener" dir="ltr"
+              style="display:inline-block">+966 55 597 2970</a></li>
+          <li><a href="#">support@mahertech.sa</a></li>
+          <li><a href="#" data-i18n="footer_addr">جدة، المملكة العربية السعودية</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer_copy">© 2077/12/12 — كمبيوترجي ماهر. جميع الحقوق محفوظة (نموذج تجريبي).</span>
+      <span data-i18n="footer_note">مصمم لأغراض العرض فقط</span>
+    </div>
+  </footer>
+
+  <div id="toast"><span class="dotok"></span><span id="toastText">تم استلام الطلب — سيتواصل معك فريقنا قريباً</span>
+  </div>
+
+  <!-- ============ PROJECT MODAL ============ -->
+  <div id="projectModal" class="modal-backdrop" onclick="closeProjectModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-dots"><span></span><span></span><span></span></span>
+          <span id="modalUrl" class="modal-url">https://project.mahertech.sa</span>
+        </div>
+        <button class="modal-close" onclick="closeProjectModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-preview-box">
+          <img id="modalImg" src="" alt="Project Preview" class="modal-img">
+          <div class="modal-preview-badge">SYSTEM STATUS: ONLINE</div>
+        </div>
+        <div class="modal-details">
+          <div class="modal-meta-row">
+            <span id="modalCat" class="proj-badge">فئة المشروع</span>
+            <span id="modalId" class="proj-id">PRJ / 00</span>
+          </div>
+          <h2 id="modalTitle">عنوان المشروع</h2>
+          <p id="modalDesc">وصف تفصيلي عن المشروع والتقنيات المستخدمة.</p>
+
+          <div class="modal-info-grid">
+            <div class="info-item">
+              <span class="info-label" data-i18n="modal_client">العميل:</span>
+              <span id="modalClient" class="info-val">مؤسسة تقنية</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label" data-i18n="modal_year">سنة التنفيذ:</span>
+              <span id="modalYear" class="info-val">2024</span>
+            </div>
+          </div>
+
+          <div class="modal-stack-section">
+            <span class="info-label" data-i18n="modal_stack">تقنيات العمل:</span>
+            <div id="modalStack" class="tech-stack"></div>
+          </div>
+
+          <div class="modal-actions">
+            <a id="modalVisitBtn" href="#" target="_blank" rel="noopener" class="btn-cta modal-visit-btn"
+              data-i18n="proj_visit_btn">زيارة الموقع ↗</a>
+            <button class="btn-outline" onclick="closeProjectModal()" data-i18n="proj_close_modal">إغلاق</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <noscript>
+    <div style="padding:2rem;font-family:system-ui;color:#eef3f6;background:#05060a">
+      تحتاج هذه التجربة إلى تفعيل جافاسكربت. / This experience needs JavaScript.
+    </div>
+  </noscript>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
